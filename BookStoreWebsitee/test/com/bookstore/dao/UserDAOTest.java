@@ -2,6 +2,8 @@ package com.bookstore.dao;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityNotFoundException;
@@ -123,7 +125,35 @@ public class UserDAOTest {
 		Users user = userDao.get(userId);
 		
 		assertNull(user);
-	}	
+	}
+	
+	
+	@Test
+	public void testListAll()
+	{
+		
+		List<Users> listUsers = userDao.listAll();
+		
+		for(Users user : listUsers)
+		{
+			
+			System.out.println(user.getEmail());
+			
+		}
+		
+		
+		assertTrue(listUsers.size() > 0);
+	}
+	
+	@Test
+	public void testCount() {
+		
+		
+	long toatlUsers = userDao.count();	
+	assertEquals(7, toatlUsers);
+		
+	}
+	
 	
 @AfterClass
 public static void 	tearDownClass()

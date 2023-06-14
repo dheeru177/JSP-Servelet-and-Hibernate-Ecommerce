@@ -2,6 +2,12 @@ package com.bookstore.entity;
 import javax.persistence.*;
 
 @Entity
+@NamedQueries({
+	
+@NamedQuery(name="Users.findAll" , query = "select u from Users u ORDER BY u.fullName"),	
+@NamedQuery(name="Users.countAll" , query = "select Count(*) from Users u")
+	
+})
 @Table(name = "users")
 public class Users {
     public int getUserId() {
