@@ -1,23 +1,24 @@
+package com.bookstore.entity;
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import com.bookstore.entity.Users;
 
-public class UsersTest {
+
+public class CategoryTest {
 
 	public static void main(String[] args) {
 	
-		Users user1 = new Users();
-		user1.setEmail("name@codejava.net");
-		user1.setFullName("Nam Ha Minh");
-		user1.setPassword("helloWorld");
+	Category cat = new Category("Advanced Java");
+	
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BookStoreWebsitee");
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		
 		entityManager.getTransaction().begin();
 		
-		entityManager.persist(user1);
+		entityManager.persist(cat);
 		
 		entityManager.getTransaction().commit();
 		
@@ -25,7 +26,7 @@ public class UsersTest {
 		
 		entityManagerFactory.close();
 		
-		System.out.println("A users object was persisted");
+		System.out.println("A cat object was persisted");
 
 	}
 
