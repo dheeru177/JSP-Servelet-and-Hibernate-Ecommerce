@@ -46,7 +46,7 @@ public class UserServices {
 
 		request.setAttribute("listUsers", listUsers);
 		if (message != null) {
-			request.setAttribute("message", "New user created successfully");
+			request.setAttribute("message",message);
 		}
 
 		String listPage = "user_list.jsp";
@@ -79,5 +79,50 @@ public class UserServices {
 		listUser("New User created successfully");
 		}
 	}
+
+	public void editUser() throws ServletException, IOException {
+		
+		
+		int userId = Integer.parseInt(request.getParameter("id"));
+		Users users = userDAO.get(userId);
+		
+		String editPage = "user_form.jsp";
+		request.setAttribute("user", users);
+	RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
+		requestDispatcher.forward(request, response);
+	}
+
+	public void updateUser() throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		int userId = Integer.parseInt(request.getParameter("userId"));
+		String email = request.getParameter("email");
+		String fullname = request.getParameter("fullname");
+		String password = request.getParameter("password");
+		
+		Users userById = userDAO.get(userId);
+		
+		Users userByEmail = userDAO.findByEmail(email);
+		
+		if(userByEmail != null && userByEmail.getUserId() != userById.getUserId())
+		{
+			String message = "Could not update user , user with email" + email + "already exists";
+			
+			request.setAttribute("message", message);
+			
+			
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("message.jsp");
+			requestDispatcher.forward(request, response);
+
+		}
+		else {
+			
+			Users user  = new Users( userId , email , fullname , password);
+			userDAO.update(user);
+			String message = "User has been updated successfully";
+			listUser(message);
+	
+		}
+		
+			}
 
 }
