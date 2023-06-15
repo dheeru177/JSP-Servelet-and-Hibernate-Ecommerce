@@ -5,12 +5,23 @@ import javax.persistence.*;
 @NamedQueries({
 	
 @NamedQuery(name="Users.findAll" , query = "select u from Users u ORDER BY u.fullName"),	
+@NamedQuery(name="Users.findByEmail" , query = "select u from Users u WHERE u.email = :email"),	
 @NamedQuery(name="Users.countAll" , query = "select Count(*) from Users u")
 	
 })
 @Table(name = "users")
 public class Users {
-    public int getUserId() {
+	
+	
+	
+    public Users(String email, String password, String fullName) {
+		super();
+		this.email = email;
+		this.password = password;
+		this.fullName = fullName;
+	}
+
+	public int getUserId() {
 		return userId;
 	}
 

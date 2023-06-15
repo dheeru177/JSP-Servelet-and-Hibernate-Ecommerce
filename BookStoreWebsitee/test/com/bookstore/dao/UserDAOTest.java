@@ -155,6 +155,20 @@ public class UserDAOTest {
 	}
 	
 	
+	@Test
+	public void testFindByEmail()
+	{
+		
+		
+		String email = "dheeru177@gmail.com";
+		Users users = userDao.findByEmail(email);
+		assertNotNull(users);
+		
+		
+	}
+	
+	
+	
 @AfterClass
 public static void 	tearDownClass()
 {
