@@ -1,8 +1,21 @@
 package com.bookstore.entity;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 @Entity
-@Table(name = "category")
+@Table(name = "category" , catalog = "bookstoredb")
+@NamedQueries({
+	
+@NamedQuery(name = "Category.findAll" , query =" select c from Category c order by c.name "),
+@NamedQuery(name = "Category.countAll" , query =" select count(*) from Category  ")
+	
+})
 public class Category {
     public Category(String name) {
 		super();
