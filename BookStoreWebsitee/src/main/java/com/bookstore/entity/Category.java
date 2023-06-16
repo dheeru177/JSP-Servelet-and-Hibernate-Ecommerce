@@ -13,7 +13,8 @@ import javax.persistence.Table;
 @NamedQueries({
 	
 @NamedQuery(name = "Category.findAll" , query =" select c from Category c order by c.name "),
-@NamedQuery(name = "Category.countAll" , query =" select count(*) from Category  ")
+@NamedQuery(name = "Category.countAll" , query =" select count(*) from Category  "),
+@NamedQuery(name="Category.findByCategory" , query = "select c from Category c WHERE c.name = :name")
 	
 })
 public class Category {
