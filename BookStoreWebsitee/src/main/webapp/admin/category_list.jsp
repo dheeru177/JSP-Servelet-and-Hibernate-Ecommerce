@@ -51,13 +51,13 @@
 </div>
 <script type="text/javascript">
 
-function confirmDelete(userId)
+function confirmDelete(categoryId)
 {
 	
 
-	if(confirm('Are you sure you want to delete the user with Id' + userId+ '?')){
+	if(confirm('Are you sure you want to delete the user with Id' + categoryId+ '?')){
 		
-		window.location = 'delete_user?id=' + userId;
+		window.location = 'delete_category?id=' + categoryId;
 		
 	}
 	
