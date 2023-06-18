@@ -6,7 +6,8 @@ import javax.persistence.*;
 	
 @NamedQuery(name="Users.findAll" , query = "select u from Users u ORDER BY u.fullName"),	
 @NamedQuery(name="Users.findByEmail" , query = "select u from Users u WHERE u.email = :email"),	
-@NamedQuery(name="Users.countAll" , query = "select Count(*) from Users u")
+@NamedQuery(name="Users.countAll" , query = "select Count(*) from Users u"),
+@NamedQuery(name="Users.checkLogin" , query = "select u from Users u where u.email = :email and password = :password")
 	
 })
 @Table(name = "users")

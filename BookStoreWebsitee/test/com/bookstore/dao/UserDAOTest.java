@@ -142,6 +142,28 @@ public class UserDAOTest extends BaseDAOTest {
 	}
 	
 	@Test
+	public void testCheckLoginSuccess() {
+		
+		
+	String email = "ravi@gmail.com";
+	String password = "mySecret";
+	boolean loginResult = userDao.checklogin(email, password);
+	
+		assertTrue(loginResult);
+	}
+	
+	@Test
+	public void testCheckLoginFailed() {
+		
+		
+	String email = "ravi90@gmail.com";
+	String password = "mySecret";
+	boolean loginResult = userDao.checklogin(email, password);
+	
+		assertFalse(loginResult);
+	}
+	
+	@Test
 	public void testCount() {
 		
 		
@@ -149,7 +171,17 @@ public class UserDAOTest extends BaseDAOTest {
 	assertEquals(7, toatlUsers);
 		
 	}
-	
+
+	@Test
+	public void testCHeckLoginSuccess()
+	{
+		
+		String email = "";
+		String password ="";
+		
+		
+		
+	}
 	
 	@Test
 	public void testFindByEmail()
