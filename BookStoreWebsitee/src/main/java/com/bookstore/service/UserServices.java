@@ -18,12 +18,12 @@ import com.bookstore.entity.Users;
 
 public class UserServices {
 
-    private EntityManager entityManager;
+	private EntityManager entityManager;
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	private UserDAO userDAO;
 
-	public UserServices(EntityManager entityManager, HttpServletRequest request , HttpServletResponse response) {
+	public UserServices(EntityManager entityManager, HttpServletRequest request, HttpServletResponse response) {
 		this.entityManager = entityManager;
 		this.request = request;
 		this.response = response;
@@ -31,20 +31,18 @@ public class UserServices {
 
 	}
 
-	public void listUser()
-			throws ServletException, IOException {
+	public void listUser() throws ServletException, IOException {
 
 		listUser(null);
 	}
 
-	public void listUser(String message)
-			throws ServletException, IOException {
+	public void listUser(String message) throws ServletException, IOException {
 
 		List<Users> listUsers = userDAO.listAll();
 
 		request.setAttribute("listUsers", listUsers);
 		if (message != null) {
-			request.setAttribute("message",message);
+			request.setAttribute("message", message);
 		}
 
 		String listPage = "user_list.jsp";
@@ -61,32 +59,29 @@ public class UserServices {
 		String password = request.getParameter("password");
 
 		Users existUser = userDAO.findByEmail(email);
-		
-		if(existUser != null)
-		{
+
+		if (existUser != null) {
 			String message = "Could not create user. A user with email " + email + " already exists";
 			request.setAttribute("message", message);
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("message.jsp");
 			requestDispatcher.forward(request, response);
-			
-		}else {
-		
-			
-		Users newUser = new Users(email, fullName, password);
-		userDAO.create(newUser);
-		listUser("New User created successfully");
+
+		} else {
+
+			Users newUser = new Users(email, fullName, password);
+			userDAO.create(newUser);
+			listUser("New User created successfully");
 		}
 	}
 
 	public void editUser() throws ServletException, IOException {
-		
-		
+
 		int userId = Integer.parseInt(request.getParameter("id"));
 		Users users = userDAO.get(userId);
-		
+
 		String editPage = "user_form.jsp";
 		request.setAttribute("user", users);
-	RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
 		requestDispatcher.forward(request, response);
 	}
 
@@ -96,39 +91,64 @@ public class UserServices {
 		String email = request.getParameter("email");
 		String fullname = request.getParameter("fullname");
 		String password = request.getParameter("password");
-		
+
 		Users userById = userDAO.get(userId);
-		
+
 		Users userByEmail = userDAO.findByEmail(email);
-		
-		if(userByEmail != null && userByEmail.getUserId() != userById.getUserId())
-		{
+
+		if (userByEmail != null && userByEmail.getUserId() != userById.getUserId()) {
 			String message = "Could not update user , user with email" + email + "already exists";
-			
+
 			request.setAttribute("message", message);
-			
-			
+
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("message.jsp");
 			requestDispatcher.forward(request, response);
 
-		}
-		else {
-			
-			Users user  = new Users( userId , email , fullname , password);
+		} else {
+
+			Users user = new Users(userId, email, fullname, password);
 			userDAO.update(user);
 			String message = "User has been updated successfully";
 			listUser(message);
-	
+
 		}
-		
-			}
-public void deleteUser() throws ServletException, IOException {
-	
-	
-	
-	int userId = Integer.parseInt(request.getParameter("id"));
-	userDAO.delete(userId);
-	String message = "User has been deleted successfully";
-	listUser(message);
-}
+
+	}
+
+	public void deleteUser() throws ServletException, IOException {
+
+		int userId = Integer.parseInt(request.getParameter("id"));
+		userDAO.delete(userId);
+		String message = "User has been deleted successfully";
+		listUser(message);
+	}
+
+	public void login() throws ServletException, IOException {
+
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		boolean loginResult = userDAO.checklogin(email, password);
+
+		if (loginResult) {
+
+			System.out.println("User is authenticated");
+
+			request.getSession().setAttribute("useremail", email);
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/");
+
+			dispatcher.forward(request, response);
+
+		} else {
+
+			String message = "Login Failed!";
+			request.setAttribute("message", message);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+
+			dispatcher.forward(request, response);
+
+		}
+
+	}
+
 }
