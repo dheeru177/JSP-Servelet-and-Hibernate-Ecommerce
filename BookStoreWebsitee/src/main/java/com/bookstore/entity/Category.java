@@ -18,7 +18,22 @@ import javax.persistence.Table;
 	
 })
 public class Category {
-    public Category(String name) {
+
+
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "category_id")
+    private int categoryId;
+
+    @Column(name = "name", nullable = false, length = 30)
+    private String name;
+
+	public Category() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Category(String name) {
 		super();
 		this.name = name;
 	}
@@ -45,18 +60,6 @@ public class Category {
 		this.name = name;
 	}
 
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "category_id")
-    private int categoryId;
-
-    @Column(name = "name", nullable = false, length = 30)
-    private String name;
-
-	public Category() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
     // Constructors, getters, and setters
 }

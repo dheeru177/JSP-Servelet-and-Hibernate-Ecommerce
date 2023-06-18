@@ -1,7 +1,18 @@
 package com.bookstore.entity;
-import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "book")
@@ -10,7 +21,39 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "book_id")
     private int bookId;
+    
+	@Column(name = "title", nullable = false, length = 128)
+    private String title;
 
+    @Column(name = "author", nullable = false, length = 64)
+    private String author;
+
+    @Column(name = "description", nullable = false, columnDefinition = "MEDIUMTEXT")
+    private String description;
+
+    @Column(name = "isbn", nullable = false, length = 15)
+    private String isbn;
+
+    @Lob
+    @Column(name = "image", nullable = false)
+    private byte[] image;
+
+    @Column(name = "price", nullable = false)
+    private float price;
+
+    @Column(name = "publish_date", nullable = false)
+    private java.util.Date publishDate;
+
+    @Column(name = "last_update_time", nullable = false)
+    private java.util.Date lastUpdateTime;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
+
+//    private Set<Review> reviews = new HashSet<Review>(0);
+//    private Set<OrderDetail> orderDetails = new HashSet<OrderDetail>(0);
+    
     public Book(int bookId, String title, String author, String description, String isbn, byte[] image, float price,
 			Date publishDate, Timestamp lastUpdateTime, Category category) {
 		super();
@@ -82,20 +125,20 @@ public class Book {
 		this.price = price;
 	}
 
-	public Date getPublishDate() {
+	public java.util.Date getPublishDate() {
 		return publishDate;
 	}
 
-	public void setPublishDate(Date publishDate) {
-		this.publishDate = publishDate;
+	public void setPublishDate(java.util.Date publishDate2) {
+		this.publishDate = publishDate2;
 	}
 
-	public Timestamp getLastUpdateTime() {
+	public java.util.Date getLastUpdateTime() {
 		return lastUpdateTime;
 	}
 
-	public void setLastUpdateTime(Timestamp lastUpdateTime) {
-		this.lastUpdateTime = lastUpdateTime;
+	public void setLastUpdateTime(java.util.Date date) {
+		this.lastUpdateTime = date;
 	}
 
 	public Category getCategory() {
@@ -106,34 +149,7 @@ public class Book {
 		this.category = category;
 	}
 
-	@Column(name = "title", nullable = false, length = 128)
-    private String title;
 
-    @Column(name = "author", nullable = false, length = 64)
-    private String author;
-
-    @Column(name = "description", nullable = false, columnDefinition = "MEDIUMTEXT")
-    private String description;
-
-    @Column(name = "isbn", nullable = false, length = 15)
-    private String isbn;
-
-    @Lob
-    @Column(name = "image", nullable = false)
-    private byte[] image;
-
-    @Column(name = "price", nullable = false)
-    private float price;
-
-    @Column(name = "publish_date", nullable = false)
-    private Date publishDate;
-
-    @Column(name = "last_update_time", nullable = false)
-    private Timestamp lastUpdateTime;
-
-    @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
 
 	public Book() {
 		super();
