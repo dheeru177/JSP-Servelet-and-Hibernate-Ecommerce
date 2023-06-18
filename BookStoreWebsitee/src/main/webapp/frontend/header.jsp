@@ -2,12 +2,12 @@
 
 <div align="center">
   <div>
-    <img alt="" src="../images/BookstoreLogo.png">
+    <img alt="" src="file:///D:/JspServelet-Ecommerce/JSP-Servelet-and-Hibernate-Ecommerce/BookStoreWebsitee/src/main/webapp/images/BookstoreLogo.png">
   </div>
   <div>
     <input type="text" name="keyword" size="50" />
     <input type="button" value="search" />
-    
+  
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="login">Sign In</a>|
     <a href="register">Register</a>|

@@ -14,7 +14,7 @@ import com.bookstore.dao.CategoryDAO;
 import com.bookstore.entity.Category;
 
 
-@WebServlet("/")
+@WebServlet("/category")
 public class HomeServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
        
