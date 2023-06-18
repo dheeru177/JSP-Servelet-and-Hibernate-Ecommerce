@@ -29,7 +29,6 @@
 <div align="center">
 <hr width="60%"/>
 <h2 class="pageheading">Recent Sales:</h2>
-
 </div>
 <div align="center">
 <hr width="60%"/>
