@@ -47,6 +47,11 @@ public class Review {
 		this.headline = headline;
 	}
 
+	public Review(int reviewId) {
+		super();
+		this.reviewId = reviewId;
+	}
+
 	public String getComment() {
 		return comment;
 	}

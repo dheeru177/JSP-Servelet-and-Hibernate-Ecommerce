@@ -20,7 +20,7 @@
       </a>
     </div>
     <div class="menu_item">
-      <a href="books">
+      <a href="list_books">
         <img src="../images/bookstack.png" />
         <br/>Books
       </a>

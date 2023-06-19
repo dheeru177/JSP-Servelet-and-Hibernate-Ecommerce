@@ -16,6 +16,11 @@ public class OrderDetail {
 		return order;
 	}
 
+	public OrderDetail(int orderDetailId) {
+		super();
+		this.orderDetailId = orderDetailId;
+	}
+
 	public void setOrder(BookOrder order) {
 		this.order = order;
 	}
