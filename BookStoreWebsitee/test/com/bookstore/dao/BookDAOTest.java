@@ -1,6 +1,7 @@
 package com.bookstore.dao;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -14,6 +15,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -69,6 +71,34 @@ public class BookDAOTest extends BaseDAOTest {
 		  Book createdBook = bookDAO.create(newBook);
 		  assertTrue(createdBook.getBookId() > 0);
 	}
+	
+	@Test
+	public void testCreateBook2() throws ParseException, IOException {
+		
+		Book newBook = new Book();
+		
+		Category category = new Category("Java Core");
+		category.setCategoryId(1);
+		newBook.setCategory(category);
+		
+		
+		newBook.setTitle("Effective Java (4nd Edition)");
+		newBook.setAuthor("Dheeraj Dubey");
+		newBook.setDescription("Become expert in java from a extraordinary expert");
+		newBook.setIsbn("9168049");
+		DateFormat dateFormat = new SimpleDateFormat("MM/DD/YYYY");
+		Date publishDate = dateFormat.parse("06/19/2023");
+		newBook.setPublishDate( publishDate);
+		
+		String imagePath ="C:\\Users\\User\\OneDrive\\Desktop\\books\\Head First Java.JPG";
+		byte[] imageBytes = Files.readAllBytes(Paths.get(imagePath));
+		newBook.setImage(imageBytes);
+		
+		  Book createdBook = bookDAO.create(newBook);
+		  assertTrue(createdBook.getBookId() > 0);
+	}
+	
+	
 	
 	@Test
 	public void testUpdateBook() throws ParseException, IOException {
@@ -130,6 +160,59 @@ public class BookDAOTest extends BaseDAOTest {
 		assertNotNull(book);
 		
 	}
+	
+	@Test
+	public void testListAll()
+	{
+		
+		List<Book> listBooks = bookDAO.listAll();
+		for(Book aBook : listBooks)
+		{
+			
+			System.out.println(aBook.getTitle() + "-" + aBook.getAuthor());
+			
+		}
+		
+		assertFalse(listBooks.isEmpty());
+	}
+	
+	@Test
+	public void testFindByTitleNotExist()
+	{
+		
+		String title = "Thinkin in Java";
+		
+		Book book = bookDAO.findByTitle(title);
+		
+		assertNull(book);
+		
+	}
+	
+	@Test
+	public void testFindByTitleExist()
+	{
+		
+		String title = "Effective Java (3nd Edition)";
+		
+		Book book = bookDAO.findByTitle(title);
+		
+		System.out.println(book.getAuthor());
+		System.out.println(book.getPrice());
+		
+		
+		assertNotNull(book);
+		
+	}
+	
+	
+	@Test
+	public void testCount() {
+		
+	long totalBooks = bookDAO.count();	
+		
+		assertEquals(3, totalBooks);
+	}
+	
 	
 	
 	@Test()

@@ -12,10 +12,19 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "book")
+@NamedQueries({
+	
+@NamedQuery(name = "Book.findAll" ,query = "select b from Book b" )	,
+@NamedQuery(name = "Book.findByTitle" ,query = "select t from Book t where t.title =:title" ),
+@NamedQuery(name = "Book.countAll", query = "select count(*) from Book b")
+
+})
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

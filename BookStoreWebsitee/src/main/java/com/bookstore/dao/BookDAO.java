@@ -43,14 +43,34 @@ public class BookDAO extends JpaDAO<Book>implements GenericDao<Book> {
 
 	@Override
 	public List<Book> listAll() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		
+		
+		
+		return super.findWithNamedQuery("Book.findAll");
 	}
 
+	
+	public Book findByTitle(String title)
+	{
+		List<Book> result = super.findWithNamedQuery("Book.findByTitle", "title", title);
+		
+		if(!result.isEmpty())
+		{
+			
+			return result.get(0);
+			
+		}
+		
+		return null;
+		
+	}
+	
 	@Override
 	public long count() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+	return	super.countWithNamedQuery("Book.countAll");
+		
 	}
 
 	
