@@ -1,5 +1,8 @@
 package com.bookstore.dao;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -11,6 +14,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import javax.persistence.EntityNotFoundException;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -44,12 +49,12 @@ public class BookDAOTest extends BaseDAOTest {
 		
 		Book newBook = new Book();
 		
-		Category category = new Category("lion");
-		category.setCategoryId(7);
+		Category category = new Category("Health Cosmetics");
+		category.setCategoryId(5);
 		newBook.setCategory(category);
 		
 		
-		newBook.setTitle("Effective Java (2nd Edition)");
+		newBook.setTitle("Effective Java (3nd Edition)");
 		newBook.setAuthor("Joshua Bloch");
 		newBook.setDescription("New coverage of generics, enums, annotations, autoboxing");
 		newBook.setIsbn("031213546");
@@ -63,6 +68,80 @@ public class BookDAOTest extends BaseDAOTest {
 		
 		  Book createdBook = bookDAO.create(newBook);
 		  assertTrue(createdBook.getBookId() > 0);
+	}
+	
+	@Test
+	public void testUpdateBook() throws ParseException, IOException {
+		
+		Book existBook = new Book();
+		
+		existBook.setBookId(1);
+		
+		Category category = new Category("Java Core");
+		category.setCategoryId(1);
+		existBook.setCategory(category);
+		
+		
+		existBook.setTitle("Effective Java (3nd Edition)");
+		existBook.setAuthor("Joshua Bloch");
+		existBook.setDescription("New coverage of generics, enums, annotations, autoboxing");
+		existBook.setPrice(40f);
+		existBook.setIsbn("031213546");
+		DateFormat dateFormat = new SimpleDateFormat("MM/DD/YYYY");
+		Date publishDate = dateFormat.parse("05/20/2008");
+		existBook.setPublishDate( publishDate);
+		
+		String imagePath ="C:\\Users\\User\\OneDrive\\Desktop\\books\\Effective Java.JPG";
+		byte[] imageBytes = Files.readAllBytes(Paths.get(imagePath));
+		existBook.setImage(imageBytes);
+		
+		  Book updateBook = bookDAO.update(existBook);
+		  assertEquals(updateBook.getTitle(), "Effective Java (3nd Edition)");
+	}
+	
+	@Test(expected = EntityNotFoundException.class)
+	public void testDeleteBookFail() {
+		
+		
+	Integer bookId = 100;
+	bookDAO.delete(bookId);
+	
+	assertTrue(true);
+		
+		
+	}
+	
+	@Test()
+	public void testGetBookFail() {
+		
+		
+		Integer bookId = 99;
+		Book book = bookDAO.get(bookId);
+		assertNull(book);
+		
+	}
+	
+	@Test()
+	public void testGetBookSuccess() {
+		
+		
+		Integer bookId = 2;
+		Book book = bookDAO.get(bookId);
+		assertNotNull(book);
+		
+	}
+	
+	
+	@Test()
+	public void testDeleteBookSuccess() {
+		
+		
+	Integer bookId = 1;
+	bookDAO.delete(bookId);
+	
+	assertTrue(true);
+		
+		
 	}
 
 }

@@ -22,21 +22,23 @@ public class BookDAO extends JpaDAO<Book>implements GenericDao<Book> {
 	}
 
 	@Override
-	public Book update(Book t) {
-		// TODO Auto-generated method stub
-		return null;
+	public Book update(Book book) {
+		
+		book.setLastUpdateTime(new Date());
+		return super.update(book);
 	}
 
 	@Override
-	public void delete(Object id) {
-		// TODO Auto-generated method stub
+	public void delete(Object bookId) {
+		
+		super.delete(Book.class, bookId);
 		
 	}
 
 	@Override
-	public Book get(Object id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Book get(Object bookId) {
+          
+		return super.find(Book.class, bookId);
 	}
 
 	@Override
