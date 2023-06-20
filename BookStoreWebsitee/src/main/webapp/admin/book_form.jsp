@@ -32,11 +32,11 @@
 
 <div align="center">
   <c:if test="${book != null}">
-    <form action="update_book" method="post" id="bookForm">
+    <form action="update_book" method="post" id="bookForm" enctype="multipart/form-data">
       <input type="hidden" name="bookId" value="${book.bookId}">
   </c:if>
   <c:if test="${book == null}">
-    <form action="create_book" method="post" id="bookForm">
+    <form action="create_book" method="post" id="bookForm" enctype="multipart/form-data">
   </c:if>
   <table class="form">
   
@@ -67,7 +67,7 @@
     </tr>
      <tr>
       <td align="right">Publish Date:</td>
-      <td align="left"><input type="text" id="publishDate" name="isbn" size="20" value="${book.publishDate}" /></td>
+      <td align="left"><input type="text" id="publishDate" name="publishDate" size="20" value="${book.publishDate}" /></td>
     </tr>
      <tr>
       <td align="right">Book Image:</td>
