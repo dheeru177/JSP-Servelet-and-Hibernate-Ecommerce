@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Base64;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -37,6 +38,7 @@ public class Book {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "book_id")
 	private int bookId;
+
 
 	@Column(name = "title", nullable = false, length = 128)
 	private String title;
@@ -92,6 +94,23 @@ public class Book {
 		// TODO Auto-generated constructor stub
 	}
 
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(bookId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Book other = (Book) obj;
+		return bookId == other.bookId;
+	}
 	// Constructors, getters, and setters
 
 	public Book(int bookId, String title, String author, String description, String isbn, byte[] image, float price,
