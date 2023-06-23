@@ -5,13 +5,17 @@
     <img alt="" src="file:///D:/JspServelet-Ecommerce/JSP-Servelet-and-Hibernate-Ecommerce/BookStoreWebsitee/src/main/webapp/images/BookstoreLogo.png">
   </div>
   <div>
+  <form action="search" method="get">
+ 
     <input type="text" name="keyword" size="50" />
-    <input type="button" value="search" />
-  
+    <input type="submit" value="search" />
+   
+   
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="login">Sign In</a>|
     <a href="register">Register</a>|
-    <a href="view_cart">Cart</a>|
+    <a href="view_cart">Cart</a>
+      </form>
   </div>
   <div>&nbsp</div>
   <div>
