@@ -244,7 +244,7 @@ public class BookServices {
 			
 		}
 		
-		
+		request.setAttribute("keyword", keyword);
 		request.setAttribute("result", result);
 		
 
