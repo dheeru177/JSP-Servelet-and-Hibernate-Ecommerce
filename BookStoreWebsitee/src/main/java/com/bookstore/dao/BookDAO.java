@@ -1,10 +1,10 @@
 package com.bookstore.dao;
 
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import com.bookstore.entity.Book;
 
@@ -75,7 +75,15 @@ public class BookDAO extends JpaDAO<Book>implements GenericDao<Book> {
 		
 	}
 	
-	
+	public List<Book> listNewBooks(){
+		
+		
+     Query query  = entityManager.createNamedQuery("Book.listNew");
+     query.setFirstResult(0);
+     query.setMaxResults(4);
+     return query.getResultList();
+		
+	}
 	
 	@Override
 	public long count() {
