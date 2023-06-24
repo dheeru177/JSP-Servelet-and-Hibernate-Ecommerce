@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bookstore.controller.BaseServlet;
+
 import com.bookstore.service.BookServices;
 
 
@@ -22,7 +22,7 @@ maxFileSize = 1024 * 300,
 maxRequestSize = 1024 * 1024
 		
 )
-public class CreateBookServlet extends BaseServlet {
+public class CreateBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
    
@@ -35,7 +35,7 @@ public class CreateBookServlet extends BaseServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-	BookServices bookServices = new BookServices(entityManager, request, response);
+	BookServices bookServices = new BookServices(request, response);
 	try {
 		bookServices.createBook();
 	} catch (ParseException e) {

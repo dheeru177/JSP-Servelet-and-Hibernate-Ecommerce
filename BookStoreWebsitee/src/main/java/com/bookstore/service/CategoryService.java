@@ -17,18 +17,17 @@ import com.bookstore.entity.Category;
 
 public class CategoryService {
 
-	private EntityManagerFactory entityManagerFactory;
-	private EntityManager entityManager;
+
 	private CategoryDAO categoryDAO;
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	private UserDAO userDAO;
 
-	public CategoryService(EntityManager entityManager, HttpServletRequest request, HttpServletResponse response) {
+	public CategoryService( HttpServletRequest request, HttpServletResponse response) {
 		this.request = request;
 		this.response = response;
-		this.entityManager = entityManager;
-		categoryDAO = new CategoryDAO(entityManager);
+	
+		categoryDAO = new CategoryDAO();
 	}
 
 	public void listCategory(String message) throws ServletException, IOException {

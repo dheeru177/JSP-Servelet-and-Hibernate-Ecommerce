@@ -28,13 +28,14 @@ public class BookServices {
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 
-	public BookServices(EntityManager entityManager, HttpServletRequest request, HttpServletResponse response) {
+	public BookServices( HttpServletRequest request, HttpServletResponse response) {
 		super();
-		this.entityManager = entityManager;
-		bookDAO = new BookDAO(entityManager);
+		
+		
 		this.request = request;
 		this.response = response;
-		categoryDAO = new CategoryDAO(entityManager);
+		bookDAO = new BookDAO();
+		categoryDAO = new CategoryDAO();
 	}
 
 	public void listBooks() throws ServletException, IOException {
@@ -196,9 +197,7 @@ public class BookServices {
 		int categoryId = Integer.parseInt(request.getParameter("id"));
 		List<Book> listBooks = bookDAO.listByCategory(categoryId);
 		Category category = categoryDAO.get(categoryId);
-		List<Category> listCategory = categoryDAO.listAll();
-
-		request.setAttribute("listCategory", listCategory);
+		
 		request.setAttribute("listBooks", listBooks);
 		request.setAttribute("category", category);
 
@@ -213,10 +212,7 @@ public class BookServices {
 		Integer bookId = Integer.parseInt(request.getParameter("id"));
 		Book book = bookDAO.get(bookId);
 	
-		List<Category> listCategory = categoryDAO.listAll();
-
-		request.setAttribute("listCategory", listCategory);
-		
+				
 		request.setAttribute("book", book);
 		
 		String detailPage = "frontend/book_detail.jsp";

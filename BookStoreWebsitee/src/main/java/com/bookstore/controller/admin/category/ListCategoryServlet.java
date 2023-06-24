@@ -7,12 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bookstore.controller.BaseServlet;
+
 import com.bookstore.service.CategoryService;
 
 
 @WebServlet("/admin/list_category")
-public class ListCategoryServlet extends BaseServlet {
+public class ListCategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
   
@@ -26,7 +26,7 @@ public class ListCategoryServlet extends BaseServlet {
 		
 		
 		response.getWriter().println("List Category");
-		CategoryService categoryService = new CategoryService(entityManager, request,response);
+		CategoryService categoryService = new CategoryService( request,response);
 		categoryService.listCategory();
 	}
 
