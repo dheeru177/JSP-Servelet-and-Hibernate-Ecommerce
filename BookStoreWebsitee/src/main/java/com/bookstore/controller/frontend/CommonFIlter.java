@@ -19,6 +19,10 @@ import com.bookstore.entity.Category;
 @WebFilter("/*")
 public class CommonFIlter extends HttpFilter implements Filter {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final CategoryDAO categoryDAO;
 
 	public CommonFIlter() {

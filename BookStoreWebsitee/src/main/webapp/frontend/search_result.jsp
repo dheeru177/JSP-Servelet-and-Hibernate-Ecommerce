@@ -6,13 +6,13 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Results for ${keyword} - Online Books Store</title>
-<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
 	<jsp:directive.include file="header.jsp" />
 
-	<div align="center">
+	<div class="center">
 
 		<c:if test="${fn:length(result) == 0}">
 			<h2>No Result for "${keyword}"</h2>

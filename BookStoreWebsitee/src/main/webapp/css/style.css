@@ -1,146 +1,116 @@
 @charset "ISO-8859-1";
 
-
-#headermenu{
-	
-	display:table;
-	
-	
-	
+#headermenu {
+    display: table;
 }
 
-
-.menu_item{
-	
-	
-display:table-cell; 
-padding-right:20px;	
-	
+.menu_item {
+    display: table-cell; 
+    padding-right: 20px;	
 }
 
-a:link{
-	
-color: cornflowerBlue;
-text-decoration:none;	
-	
-	
+a:link {
+    color: cornflowerBlue;
+    text-decoration: none;	
 }
 
-a:visited{
-	
-color:indigo;
-	
-	
+a:visited {
+    color: indigo;
 }
 
-a:hover{
-	
-color : blue;
-text-decoration:underline;	
-	
+a:hover {
+    color: blue;
+    text-decoration: underline;	
 }
 
-a:active{
-	
-color:red;	
-	
+a:active {
+    color: red;	
 }
 
-
-#headermenu a:link{
-	
-	
-font-size: larger;	
-
+#headermenu a:link {
+    font-size: larger;	
 }
 
-.pageheading{
-
-
-color:darkblue;
-
+.pageheading {
+    color: darkblue;
 }
-
 
 table {
-	
-border: 1px solid black;
-border-collapse:collapse;	
-	
-	
+    border: 1px solid black;
+    border-collapse: collapse;	
 }
 
-th,td{
-	
-	
-padding:8px;	
+th, td {
+    padding: 8px;	
 }
 
-
-th{
-	
-	
-background: darkblue;
-color:cornsilk;
-font-size:larger;	
-	
+th {
+    background: darkblue;
+    color: cornsilk;
+    font-size: larger;	
 }
 
-table.form{
-	
-	
-border:0;
-padding	:4px;
-	
+table.form {
+    border: 0;
+    padding: 4px;	
 }
 
-button{
-	
-padding: 6px;
-border-radius: 5px;	
-	
+button {
+    padding: 6px;
+    border-radius: 5px;	
 }
 
+button[type=submit] {
+    font-weight: bold;	
+}
 
-button[type=submit]
+button:hover {
+    background-color: white;
+    color: green;	
+}
+
+.message {
+    font-style: italic;	
+    color: blue;	
+}
+
+input {
+    border: 1px solid;
+    border-radius: 4px;
+    border-color: green;
+    height: 20px;	
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+    margin: 5px;	
+}
+
+div.center {
+    text-align: center;	
+}
+
+div.book {
+    display: inline-block;
+    margin: 20px;
+    text-align: center;	
+}
+
+div.book_group {
+    width: 80%;
+    margin: 0 auto;	
+}
+div.next-row
 {
 	
-font-weight: bold;
+clear:both;
 	
 	
 }
-
-
-button:hover{
+img.book-small{
 	
-	
-background-color: white;
-color:green;
-	
-	
-}
-
-.message{
-	
-font-style:italic;	
-color:blue;	
-	
-}
-
-
-input{
-	
-border:1px solid ;
-border-radius:4px;
-border-color:green;
-height:20px;	
-	
-}
-
-.error{
-	
-color:red;
-font-weight:bold;
-margin:5px;	
+width:128px;
+height:164px;	
 	
 }

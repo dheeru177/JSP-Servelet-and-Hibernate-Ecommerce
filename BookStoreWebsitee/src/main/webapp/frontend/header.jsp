@@ -1,8 +1,8 @@
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
-<div align="center">
+<div class="center">
   <div>
-    <img alt="" src="file:///D:/JspServelet-Ecommerce/JSP-Servelet-and-Hibernate-Ecommerce/BookStoreWebsitee/src/main/webapp/images/BookstoreLogo.png">
+    <img alt="" src="images/BookstoreLogo.png">
   </div>
   <div>
   <form action="search" method="get">
