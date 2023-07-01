@@ -27,7 +27,7 @@
 						<div style="width: 10%;">
 							<div align="left">
 								<a href="view_book?id=${book.bookId}">
-									<img src="data:image/jpg;base64,${book.base64Image}" width="128" height="164" />
+									<img class="book-small" src="data:image/jpg;base64,${book.base64Image}" />
 								</a>
 							</div>
 						</div>
