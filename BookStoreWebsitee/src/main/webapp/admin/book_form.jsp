@@ -13,9 +13,12 @@
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
+  
+ <script src="https://cdn.tiny.cloud/1/oa5qmdyyiax46trn4t2x8lodap940npazo4bhdbewsluier9/tinymce/5/tinymce.min.js"></script>
 
+  
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
- 
+
 
 
 </head>
@@ -94,7 +97,7 @@ src="data:image/jpg;base64 ,${book.base64Image}"
      <tr>
       <td align="right">Description:</td>
       <td align="left">
-     <textarea rows="5" cols="50" name="description" id="description" >${book.description}</textarea>
+     <textarea id="myTextarea" rows="5" cols="50" name="description" id="description" >${book.description}</textarea>
     
       </td>
     </tr>
@@ -174,7 +177,13 @@ function showImageThumbnail(fileInput)
 	
 }
 
-
+tinymce.init({
+    selector: '#myTextarea',
+    plugins: 'advlist autolink lists link image charmap print preview hr anchor',
+    toolbar: 'undo redo | bold italic underline | numlist bullist | link image',
+    height: 300,
+    menubar: false
+  });
 </script>
 
 </body>

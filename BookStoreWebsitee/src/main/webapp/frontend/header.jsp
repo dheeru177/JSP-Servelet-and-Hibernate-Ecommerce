@@ -2,7 +2,9 @@
 
 <div class="center">
   <div>
+    <a href="${pageContext.request.contextPath}/Home">
     <img alt="" src="images/BookstoreLogo.png">
+    </a>
   </div>
   <div>
   <form action="search" method="get">

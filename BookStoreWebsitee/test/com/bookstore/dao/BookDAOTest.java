@@ -51,12 +51,12 @@ public class BookDAOTest {
 		
 		Book newBook = new Book();
 		
-		Category category = new Category("Health Cosmetics");
-		category.setCategoryId(5);
+		Category category = new Category("Concurrency");
+		category.setCategoryId(7);
 		newBook.setCategory(category);
 		
 		
-		newBook.setTitle("Effective Java (3nd Edition)");
+		newBook.setTitle("Effective Java (999nd Edition)");
 		newBook.setAuthor("Joshua Bloch");
 		newBook.setDescription("New coverage of generics, enums, annotations, autoboxing");
 		newBook.setIsbn("031213546");
@@ -310,4 +310,15 @@ public class BookDAOTest {
 		
 	}
 
+	@Test
+	public void testCountByCategory()
+	{
+	
+		int categoryId = 5;
+		long numofBooks = bookDAO.countByCategory(categoryId);
+		assertTrue(numofBooks == 2);
+		
+		
+		
+	}
 }

@@ -31,6 +31,10 @@ import javax.persistence.Transient;
 		@NamedQuery(name = "Book.findAll", query = "select b from Book b"),
 		@NamedQuery(name = "Book.findByTitle", query = "select t from Book t where t.title =:title"),
 		@NamedQuery(name = "Book.countAll", query = "select count(*) from Book b"),
+		@NamedQuery(
+			    name = "Book.countByCategory",
+			    query = "SELECT COUNT(b) FROM Book b JOIN b.category c WHERE c.categoryId = :catId"
+			),
 		@NamedQuery(name = "Book.findByCategory", query = "select b from Book b join b.category c where c.categoryId = :catId"),
 		@NamedQuery(name = "Book.listNew", query = "SELECT b FROM Book b ORDER BY b.publishDate DESC"),
 		@NamedQuery(name = "Book.search" , query="SELECT b FROM Book b WHERE b.title LIKE '%' || :keyword || '%'"
